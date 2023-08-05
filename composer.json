@@ -2,7 +2,8 @@
   "name": "adideas/infinity_scroll_php",
   "description": "Large Object Transmission Control Protocol",
   "keywords": [],
-  "homepage": "https://github.com/facade/ignition",
+  "homepage": "https://github.com/adideas/infinity_scroll_php",
+  "version": "0.0.1",
   "license": "MIT",
   "require": {
     "php": "^7.4",

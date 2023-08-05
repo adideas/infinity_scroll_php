@@ -212,17 +212,18 @@ The response is built on JSON with **REQUIRED** parameters defined in [Response]
 The filter is designed to filter data (sort). The server may ignore the filter due to its absence or due to incorrect data passed to the filter.
 The minimum list of filters. Their presence is mandatory.
 
-| Name of filter | Description or example |
-|----------------|---|
-| SORT           | Sorting data [value = "ASC" or "DESC"] |
-| LIKE           | To search for the specified template in the column. [value=%text%] |
-| FIND           | Get an object by identification key. |
-| WHEREIN        | To search for the specified match values in a list. [value=[1]] |
-| BETWEEN        | To search for a value between. [value = {"from": "", "to": ""}] |
-| LESS           | x < value |
-| OVER           | x > value |
-| EQUAL_OR_LESS  | x <= value |
-| EQUAL_OR_OVER  | x >= value|
+| Name of filter | Description or example                                              |
+|----------------|---------------------------------------------------------------------|
+| SORT           | Sorting data [value = "ASC" or "DESC"]                              |
+| LIKE           | To search for the specified template in the column. [value=%text%]  |
+| FIND           | Get an object by identification key.                                |
+| WHEREIN        | To search for the specified match values in a list. [value=[1]]     |
+| WHERENOTIN     | To search for the specified match values not in a list. [value=[1]] |
+| BETWEEN        | To search for a value between. [value = {"from": "", "to": ""}]     |
+| LESS           | x < value                                                           |
+| OVER           | x > value                                                           |
+| EQUAL_OR_LESS  | x <= value                                                          |
+| EQUAL_OR_OVER  | x >= value                                                          |
 
 Basic parameters for describing an object.
 

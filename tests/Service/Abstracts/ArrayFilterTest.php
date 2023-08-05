@@ -81,6 +81,8 @@ class ArrayFilterTest extends TestCase
             function(FilterFactory $filter) { $filter->FIND("2", "key"); return [["key" => 2]]; },
             function(FilterFactory $filter) {$filter->WHEREIN("[1, 0]", "key"); return [["key" => 0], ["key" => 1]]; },
             function(FilterFactory $filter) { $filter->WHEREIN("[2, 0]", "key"); return [["key" => 2], ["key" => 0]]; },
+            function(FilterFactory $filter) {$filter->WHERENOTIN("[1, 0]", "key"); return [["key" => 2], ["key" => 3]]; },
+            function(FilterFactory $filter) { $filter->WHERENOTIN("[2, 0]", "key"); return [["key" => 3], ["key" => 1]]; },
             function(FilterFactory $filter) { $filter->BETWEEN("[1, 2]", "key"); return [["key" => 2], ["key" => 1]]; },
             function(FilterFactory $filter) { $filter->BETWEEN("[2, 3]", "key"); return [["key" => 2], ["key" => 3]]; },
             function(FilterFactory $filter) { $filter->LESS("2", "key"); return [["key" => 0], ["key" => 1]]; },

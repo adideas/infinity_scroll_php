@@ -10,6 +10,7 @@ use InfinityScrollPagination\Service\Contracts\Filter as FilterContract;
  * @method static FilterContract LIKE(string $value, ?string $identifyKey = null)
  * @method static FilterContract FIND(string $value, ?string $identifyKey = null)
  * @method static FilterContract WHEREIN(array $value = [1,2,3], ?string $identifyKey = null)
+ * @method static FilterContract WHERENOTIN(array $value = [1,2,3], ?string $identifyKey = null)
  * @method static FilterContract BETWEEN(array $value = [FROM, TO], ?string $identifyKey = null)
  * @method static FilterContract LESS(string $value, ?string $identifyKey = null)
  * @method static FilterContract OVER(string $value, ?string $identifyKey = null)

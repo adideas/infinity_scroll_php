@@ -73,6 +73,21 @@ abstract class ArrayFilter extends AbstractFilter implements FilterFactory
         }
     }
 
+    final public function WHERENOTIN(string $value = "[]", ?string $identifyKey = null): void
+    {
+        $value = json_decode($value, true);
+        if ($value && is_array($value) && count($value)) {
+            $key = $this->getDefaultIdentifyKey($identifyKey);
+
+            $array = array_filter($this->array, function ($item) use ($key, $value) {
+                $itemValue = $item->{$key} ?? $item[$key];
+                return !in_array($itemValue, $value);
+            });
+
+            $this->array = array_values($array);
+        }
+    }
+
     final public function BETWEEN(string $value = "[null, null]", ?string $identifyKey = null): void
     {
         $value = json_decode($value, true);

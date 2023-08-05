@@ -36,6 +36,11 @@ abstract class FilterEnum
         return self::initFilter($instance, __FUNCTION__, $value, $identifyKey);
     }
 
+    final public static function WHERENOTIN(FilterContract $instance, string $value, ?string $identifyKey = null): FilterContract
+    {
+        return self::initFilter($instance, __FUNCTION__, $value, $identifyKey);
+    }
+
     final public static function BETWEEN(FilterContract $instance, string $value, ?string $identifyKey = null): FilterContract
     {
         return self::initFilter($instance, __FUNCTION__, $value, $identifyKey);

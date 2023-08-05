@@ -23,4 +23,12 @@ class FilterEnumTest extends TestCase
             FilterEnum::WHEREIN(new Filter(), '[1,2,3]', '2') . ''
         );
     }
+
+    public function testWhereNotIn(): void
+    {
+        $this->assertEquals(
+            '{"name":"WHERENOTIN","identifyKey":"2","value":"[1,2,3]"}',
+            FilterEnum::WHERENOTIN(new Filter(), '[1,2,3]', '2') . ''
+        );
+    }
 }

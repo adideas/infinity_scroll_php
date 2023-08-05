@@ -28,6 +28,14 @@ class FiltersTest extends TestCase
         );
     }
 
+    public function testWhereNotIn(): void
+    {
+        $this->assertEquals(
+            '{"name":"WHERENOTIN","identifyKey":"2","value":"[1,2,3]"}',
+            Filters::WHERENOTIN([1, 2, 3], '2') . ''
+        );
+    }
+
     public function testSortArrayAsc(): void
     {
         $filter = new class extends ArrayFilter {

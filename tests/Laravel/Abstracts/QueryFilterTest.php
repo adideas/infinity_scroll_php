@@ -67,6 +67,17 @@ class QueryFilterTest extends TestCase
         );
     }
 
+    public function testWhereNotIn()
+    {
+        $filter = $this->getMockData();
+        $filter->WHERENOTIN("[1,2,3]", "WHERENOTIN");
+
+        $this->assertEquals(
+            'select * where "WHERENOTIN" not in (?, ?, ?)',
+            $filter->get()->toSql()
+        );
+    }
+
     public function testBetween()
     {
         $filter = $this->getMockData();

@@ -38,6 +38,14 @@ abstract class EloquentFilter extends AbstractFilter implements FilterFactory
         }
     }
 
+    final public function WHERENOTIN(string $value = "[]", ?string $identifyKey = null): void
+    {
+        $value = json_decode($value, true);
+        if ($value && is_array($value) && count($value)) {
+            $this->builder->whereNotIn($this->getDefaultIdentifyKey($identifyKey), $value);
+        }
+    }
+
     final public function BETWEEN(string $value = "[null, null]", ?string $identifyKey = null): void
     {
         $value = json_decode($value, true);

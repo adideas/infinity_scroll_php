@@ -35,6 +35,13 @@ interface FilterFactory extends FilterInclude
     public function WHEREIN(string $value = "[]", ?string $identifyKey = null): void;
 
     /**
+     * @param string $value "[1,2,3 ...]"
+     * @param string|null $identifyKey
+     * @return void
+     */
+    public function WHERENOTIN(string $value = "[]", ?string $identifyKey = null): void;
+
+    /**
      * @param string $value [from, to] : COUNT = 2
      * @param string|null $identifyKey
      * @return void

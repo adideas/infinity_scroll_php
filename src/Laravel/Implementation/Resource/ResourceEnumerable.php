@@ -38,7 +38,6 @@ class ResourceEnumerable extends Resource
     {
         $response->getHeader()->setIdentifyKey($request->getIdentifyKey());
         $response->getHeader()->setCountItems($count = count($response->getPayload()));
-        $this->counter += $count;
     }
 
     private function setPayload(ResponseImpl $response, FormRequestDecorator $request)

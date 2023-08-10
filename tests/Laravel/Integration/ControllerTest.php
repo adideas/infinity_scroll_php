@@ -4,6 +4,7 @@ namespace Tests\Laravel\Integration\TestCase_1;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Enumerable;
 use InfinityScrollPagination\Laravel\Abstracts\Resource;
 use InfinityScrollPagination\Service\Implementation\Filters;
 use InfinityScrollPagination\Service\Implementation\Meta;
@@ -125,10 +126,10 @@ class ControllerTest extends TestCase
         $request->setTo(2);
 
         $NOT_GENERATE_ARRAY = [
-            (object)["id" => (1)],
-            (object)["id" => (2)],
-            (object)["id" => (3)],
-            (object)["id" => (4)],
+            (object)["id" => 1],
+            (object)["id" => 2],
+            (object)["id" => 3],
+            (object)["id" => 4],
         ];
 
         $res = Resource::iterator(
@@ -163,5 +164,48 @@ class ControllerTest extends TestCase
             '{"payload":[{"id":1}],"header":{"countItems":1,"identifyKey":"id"},"meta":null}',
             $res . ''
         );
+    }
+
+    public function testEnumerable() {
+        $data = [];
+        for ($i = 1; $i <= 100; $i++) {
+            $data[] = (object)["id" => $i];
+        }
+
+        $enumerable = (new Collection())->mergeRecursive($data);
+
+        $json = new \stdClass();
+        $json->meta = new \stdClass();
+        $json->meta->nextIdentify = '';
+
+        $to = 2;
+        $check = 'E:' . $to;
+        $counter = 0;
+
+        do {
+            $request = new Request([]);
+            $request->setIdentifyKey('id');
+            $request->setTo($to);
+            $request->setNextIdentify($json->meta->nextIdentify);
+            $filterRequest = new FilterRequest();
+            $filterRequest->merge($request->toArray());
+
+            $res = Resource::enumerable(
+                $enumerable
+            )->get($filterRequest);
+
+            $counter += $to;
+            $check = 'E:' . $counter;
+            if ($counter == 100) {
+                $check = '-1';
+            }
+
+            $json = json_decode($res->getContent());
+            $nextIdentify = $json->meta->nextIdentify;
+            $this->assertEquals($check, $nextIdentify);
+            $this->assertEquals($json->payload, [$data[0], $data[1]]);
+            $data = array_slice($data, $to);
+
+        } while($nextIdentify != '-1');
     }
 }
